@@ -35,11 +35,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', # Необходимо для swagger (по умолчанию включён)
     'rest_framework',
     'djoser',
     'cats.apps.CatsConfig',
     'django_filters',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -161,4 +162,14 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
 }
